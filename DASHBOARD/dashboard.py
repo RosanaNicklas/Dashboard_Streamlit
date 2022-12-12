@@ -14,27 +14,24 @@ st.title("Iris AGAIN!!")
 st.title("1.ANALISIS DE LOS DATOS DEL IRIS DATASET")
 
 opciones = st.sidebar.radio("ANALIZANDO LOS DATOS",
-opciones=["IRIS DATASET",,"DATOS ESTADISTICOS", "TAMAÑO DEL IRIS DATASET","INFORMACION", 
+opciones=["IRIS DATASET",,"DATOS ESTADISTICOS", "TABLA DEL IRIS DATASET","TAMAÑO DEL IRIS DATASET","INFORMACION", 
 "TIPOS DE ESPECIES Y CANTIDAD","PRIMERAS CINCO FILAS DEL IRIS DATASET"])
 
 if opciones == "IRIS DATASET":
 df
-
-elif opciones == :"TAMAÑO DEL IRIS DATASET":
+elif opciones == "TAMAÑO DEL IRIS DATASET":
 df.shape
-
-elif opciones == :"PRIMERAS CINCO FILAS DEL IRIS DATASET":
+elif opciones == "TABLA DEL IRIS DATASET":
+st.table(df)
+elif opciones == "PRIMERAS CINCO FILAS DEL IRIS DATASET":
 df.head
-
-elif opciones == :"INFORMACIÓN DEL IRIS DATASET":
+elif opciones == "INFORMACIÓN DEL IRIS DATASET":
 df.info()
-
 elif opciones == :"TIPOS DE SPECIES Y CANTIDAD":
 df.Species.value_counts()
-
 elif opciones == :"DATOS ESTADISTICOS":
 df.describe()
-st.write(df)
+
 
 st.write("Podemos plotear un gráfico de barras")
 st.bar_chart(df.SepalLengthCm)
