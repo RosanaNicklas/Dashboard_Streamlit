@@ -1,6 +1,7 @@
 # Para ejecutar usaremos streamlit run <nombre del script> :streamlit run dashboard.py
 
 import pandas as pd
+import plotly.figure_factory as ff
 import seaborn as sns
 import streamlit as st
 
@@ -89,3 +90,24 @@ st.title(GRAFICOS DE LOS DATOS DEL IRIS DATASET")
 st.markdown("VISUALIZAMOS TODO EL IRIS DATASET")
 fig=sns.pairplot(df, hue="Species")
 st.pyplot(fig)
+x1 = df.Species == "Iris-setosa"
+x2 = df.Species == "Iris-versicolor"
+x3 = df.Species == "Iris-virginica"
+
+
+hist_data = [x1, x2, x3]
+
+group_labels = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"] 
+
+
+fig = ff.create_distplot(
+        hist_data, group_labels, bin_size=[.1, .25, .5])
+
+
+st.plotly_chart(fig, use_container_width=True)
+
+
+chart_data = pd.DataFrame(
+  df,columns=[["Iris-setosa", "Iris-versicolor", "Iris-virginica"] ])
+
+st.line_chart(chart_data)
