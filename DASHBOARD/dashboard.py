@@ -26,7 +26,7 @@ elif opciones == "TAMAÑO DEL IRIS DATASET":
 elif opciones == "TABLA DEL IRIS DATASET":
 	st.write("Tabla del Iris Dataset")
 	st.table(df)
-elif opciones == "TIPOS DE SPECIES Y CANTIDAD":
+elif opciones == "TIPOS DE ESPECIES Y CANTIDAD":
 	st.write("Tipos de Especies y Cantidad", df["Species"].value_counts())
 elif opciones == "DATOS ESTADISTICOS":
 	st.write("************* Datos Estadisticos ***************", df.describe())
@@ -91,10 +91,10 @@ st.markdown("VISUALIZAMOS SPECIES CON HISTOGRAMA")
 g = sns.pairplot(df, hue="Species", diag_kind="hist")
 st.pyplot(g)
 
-fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data= "PetalWidthCm")
+fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data_0= "PetalWidthCm")
 st.plotly.chart(fig)
 
 
-st;write("VIOLINES")
+st.write("VIOLINES")
 ax = sns.violinplot(x="Species", y="SepalLengthCm", data=df,size=8)
 st.plotly(ax)
