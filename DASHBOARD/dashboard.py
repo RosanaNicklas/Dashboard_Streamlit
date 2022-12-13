@@ -27,7 +27,7 @@ elif opciones == "TABLA DEL IRIS DATASET":
 	st.write("Tabla del Iris Dataset")
 	st.table(df)
 elif opciones == "TIPOS DE SPECIES Y CANTIDAD":
-	st.write("Tipos de Especies y Cantidad", df.Species.value_counts())
+	st.write("Tipos de Especies y Cantidad", df["Species"].value_counts())
 elif opciones == "DATOS ESTADISTICOS":
 	st.write("************* Datos Estadisticos ***************", df.describe())
 
