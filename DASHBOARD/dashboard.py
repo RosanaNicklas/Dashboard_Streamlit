@@ -91,8 +91,8 @@ st.markdown("VISUALIZAMOS SPECIES CON HISTOGRAMA")
 g = sns.pairplot(df, hue="Species", diag_kind="hist")
 st.pyplot(g)
 
-fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data_0= "PetalWidthCm")
-st.plotly.chart(fig)
+fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data=["PetalWidthCm"])
+st.plotly_chart(fig)
 
 
 st.write("VIOLINES")
