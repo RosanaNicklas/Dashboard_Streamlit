@@ -93,3 +93,8 @@ st.pyplot(g)
 
 fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data= "PetalWidthCm")
 st.plotly.chart(fig)
+
+
+st;write("VIOLINES")
+ax = sns.violinplot(x="Species", y="SepalLengthCm", data=df,size=8)
+st.plotly(ax)
