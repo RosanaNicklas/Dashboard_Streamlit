@@ -1,49 +1,49 @@
 # Para ejecutar usaremos streamlit run <nombre del script> :streamlit run dashboard.py
 
 import pandas as pd
+import matplotlib.pyplot as plt
 import plotly.figure_factory as ff
+import plotly.express as px
 import seaborn as sns
 import streamlit as st
 
 st.write("Práctica DashBoard - Rosana Longares & Javier López")
 st.write("Esta es la primera versión para el Iris Dataset...")
 
-df = pd.read_csv("..\\DATA\\2_IrisSpecies.csv")  
+df = pd.read_csv("..//DATA//2_IrisSpecies.csv")  
 
 st.title("Iris AGAIN!!")
 st.title("1.ANALISIS DE LOS DATOS DEL IRIS DATASET")
 
-opciones = st.sidebar.radio("ANALIZANDO LOS DATOS",	["IRIS DATASET","DATOS ESTADISTICOS", "TABLA DEL IRIS DATASET","TAMAÑO DEL IRIS DATASET","INFORMACION", 
-"TIPOS DE ESPECIES Y CANTIDAD","PRIMERAS CINCO FILAS DEL IRIS DATASET"])
+opciones = st.sidebar.radio("ANALIZANDO LOS DATOS",	["IRIS DATASET","DATOS ESTADISTICOS", "TABLA DEL IRIS DATASET","TAMAÑO DEL IRIS DATASET", 
+"TIPOS DE ESPECIES Y CANTIDAD"])
 
 if opciones == "IRIS DATASET":
+	st.write("*********** IRIS DATASET ***********")
 	st.dataframe(df)
 elif opciones == "TAMAÑO DEL IRIS DATASET":
-	df.shape
+	st.write("El tamaño del Dataset es:", df.shape)
 elif opciones == "TABLA DEL IRIS DATASET":
+	st.write("Tabla del Iris Dataset")
 	st.table(df)
-elif opciones == "PRIMERAS CINCO FILAS DEL IRIS DATASET":
-	df.head
-elif opciones == "INFORMACIÓN DEL IRIS DATASET":
-	df.info()
 elif opciones == "TIPOS DE SPECIES Y CANTIDAD":
-	df.Species.value_counts()
+	st.write("Tipos de Especies y Cantidad", df.Species.value_counts())
 elif opciones == "DATOS ESTADISTICOS":
-	df.describe()
+	st.write("************* Datos Estadisticos ***************", df.describe())
 
 
 st.write("Podemos plotear un gráfico de barras")
 st.bar_chart(df.SepalLengthCm)
 #st.pyplot(df.SepalLengthCm, df.Species, color = "red")
 
-st.write("PREDICCIÓN")
+st.title("2.PREDICCIÓN")
 
 
 import joblib
 from PIL import Image
 
 #Loading Our final trained Knn model 
-model= open("..\\DATA\\Clasificador_Knn.pkl", "rb")
+model= open("..//DATA//Clasificador_Knn.pkl", "rb")
 knn_clf=joblib.load(model)
 
 
@@ -51,9 +51,9 @@ st.title("Iris flower species Classification App")
 
 #Loading images
 
-setosa= Image.open('..\\DATA\\setosa.png')
-versicolor= Image.open('..\\DATA\\versicolor.png')
-virginica = Image.open('..\\DATA\\virginica.png')
+setosa= Image.open('..//DATA//setosa.png')
+versicolor= Image.open('..//DATA//versicolor.png')
+virginica = Image.open('..//DATA//virginica.png')
 
 st.sidebar.title("Features")
 
@@ -81,23 +81,15 @@ if st.button("Click Here to Classify"):
 	elif prediction == 2.0: st.image(versicolor)  
 	else: st.image(virginica) 
 	 
-st.title("GRAFICOS DE LOS DATOS DEL IRIS DATASET")
+st.title("3.GRÁFICOS DE LOS DATOS DEL IRIS DATASET")
 
 st.markdown("VISUALIZAMOS TODO EL IRIS DATASET")
 fig=sns.pairplot(df, hue="Species")
 st.pyplot(fig)
 	 
 st.markdown("VISUALIZAMOS SPECIES CON HISTOGRAMA")	 
-x1 = df.Species == "Iris-setosa"
-x2 = df.Species == "Iris-versicolor"
-x3 = df.Species == "Iris-virginica"
-hist_data = [x1, x2, x3]
-group_labels = ["Iris-setosa", "Iris-versicolor", "Iris-virginica"] 
-fig = ff.create_distplot(
-        hist_data, group_labels, bin_size=[.1, .25, .5])
-st.plotly_chart(fig, use_container_width=True)
-	 
-st.markdown("VISUALIZAMOS SPECIES CON GRAFICO DE LINEA")	 
-chart_data = pd.DataFrame(
-  df,columns=[["Iris-setosa", "Iris-versicolor", "Iris-virginica"] ])
-st.line_chart(chart_data)
+g = sns.pairplot(df, hue="Species", diag_kind="hist")
+st.pyplot(g)
+
+fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data= "PetalWidthCm")
+st.plotly.chart(fig)
