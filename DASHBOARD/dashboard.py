@@ -98,16 +98,20 @@ fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", si
 st.plotly_chart(fig)
 
 #VIOLINES
-vi1 = sns.violinplot(y='Species', x='PetalLengthCm', data=df, inner='quartile')
-vi2 = sns.violinplot(y='Species', x='PetalWidthCm', data=df, inner='quartile')
-vi3 = sns.violinplot(y='Species', x='SepalLengthCm', data=df, inner='quartile')
-vi4 = sns.violinplot(y='Species', x='SepalWidthCm', data=df, inner='quartile')
+vi1 = plt.figure(figsize=(9,7))
+sns.violinplot(y='Species', x='PetalLengthCm', data=df, inner='quartile')
+vi2 = plt.figure(figsize=(9,7))
+sns.violinplot(y='Species', x='PetalWidthCm', data=df, inner='quartile')
+vi3 = plt.figure(figsize=(9,7)) 
+sns.violinplot(y='Species', x='SepalLengthCm', data=df, inner='quartile')
+vi4 = plt.figure(figsize=(9,7))
+sns.violinplot(y='Species', x='SepalWidthCm', data=df, inner='quartile')
 
 
 
 Violin = st.sidebar.selectbox("GRÁFICOS DE VIOLINES", ("ESPECIES Y EL ANCHO DEL PETALO", "ESPECIES Y EL LARGO DEL PETALO",
 "ESPECIES Y EL LARGO DEL SEPALO", "ESPECIES Y EL ANCHO DEL SEPALO"))
-"""
+
 if Violin == "ESPECIES Y EL ANCHO DEL PETALO":
 	st.write("ESPECIES Y EL ANCHO DEL PETALO")
 	st.pyplot(vi2)
@@ -120,7 +124,7 @@ elif Violin == "ESPECIES Y EL ANCHO DEL SEPALO":
 	st.pyplot(vi4)
 elif Violin == "ESPECIES Y EL LARGO DEL SEPALO":
 	st.write("ESPECIES Y EL LARGO DEL SEPALO")
-	st.pyplot(vi3)"""
+	st.pyplot(vi3)
 
 fig1 = plt.figure(figsize=(9,7))
 sns.histplot(data= df, x = 'PetalLengthCm', hue = "Species", multiple = "stack")
@@ -148,3 +152,31 @@ elif HISTOGRAMA == "ESPECIES Y EL ANCHO DEL SEPALO":
 elif HISTOGRAMA == "ESPECIES Y EL LARGO DEL SEPALO":
 	plt.title("ESPECIES Y EL LARGO DEL SEPALO")
 	st.pyplot(fig3)
+
+
+fig11 = plt.figure(figsize=(9,7))
+sns.kdeplot(data= df, x = 'PetalLengthCm', hue = "Species", multiple = "stack")
+
+fig22 = plt.figure(figsize=(9,7))
+sns.kdeplot(data= df, x = 'PetalWidthCm', hue = "Species", multiple = "stack")
+
+fig33 = plt.figure(figsize=(9,7))
+sns.kdeplot(data= df, x = 'SepalLengthCm', hue = "Species", multiple = "stack")
+
+fig44 = plt.figure(figsize=(9,7))
+sns.kdeplot(data= df, x = 'SepalWidthCm', hue = "Species", multiple = "stack")
+
+KDEPLOT =  st.sidebar.selectbox("KDEPLOT", ("ESPECIES Y EL ANCHO DEL PETALO", "ESPECIES Y EL LARGO DEL PETALO",
+"ESPECIES Y EL LARGO DEL SEPALO", "ESPECIES Y EL ANCHO DEL SEPALO"))
+if KDEPLOT  == "ESPECIES Y EL LARGO DEL PETALO":
+	plt.title("ESPECIES Y EL LARGO DEL PETALO")
+	st.pyplot(fig11)
+elif KDEPLOT  == "ESPECIES Y EL ANCHO DEL PETALO":
+	plt.title("ESPECIES Y EL ANCHO DEL PETALO")
+	st.pyplot(fig22)
+elif KDEPLOT  == "ESPECIES Y EL ANCHO DEL SEPALO":
+	plt.title("ESPECIES Y EL ANCHO DEL SEPALO")
+	st.pyplot(fig44)	
+elif KDEPLOT  == "ESPECIES Y EL LARGO DEL SEPALO":
+	plt.title("ESPECIES Y EL LARGO DEL SEPALO")
+	st.pyplot(fig33)
