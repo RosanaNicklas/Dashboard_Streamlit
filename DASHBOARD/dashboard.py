@@ -6,10 +6,13 @@ import plotly.figure_factory as ff
 import plotly.express as px
 import seaborn as sns
 import streamlit as st
+from PIL import Image
 
 st.write("Práctica DashBoard - Rosana Longares & Javier López")
 st.write("Esta es la primera versión para el Iris Dataset...")
 
+image = Image.open('..//DATA//irisris.png')
+st.image(image, caption='FLOR IRIS')
 df = pd.read_csv("..//DATA//2_IrisSpecies.csv")  
 
 st.title("Iris AGAIN!!")
@@ -22,7 +25,7 @@ if opciones == "IRIS DATASET":
 	st.write("*********** IRIS DATASET ***********")
 	st.dataframe(df)
 elif opciones == "TAMAÑO DEL IRIS DATASET":
-	st.write("El tamaño del Dataset es:", df.shape)
+	st.write("El tamaño del Dataset es:", df.shape, df.Species== "Iris-setosa")
 elif opciones == "TABLA DEL IRIS DATASET":
 	st.write("Tabla del Iris Dataset")
 	st.table(df)
@@ -94,7 +97,26 @@ st.pyplot(g)
 fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data=["PetalWidthCm"])
 st.plotly_chart(fig)
 
+#VIOLINES
+"""vi1 = sns.violinplot(y='Species', x='PetalLengthCm', data=df, inner='quartile')
+vi2 = sns.violinplot(y='Species', x='PetalWidthCm', data=df, inner='quartile')
+vi3 = sns.violinplot(y='Species', x='SepalLengthCm', data=df, inner='quartile')
+vi4 = sns.violinplot(y='Species', x='SepalWidthCm', data=df, inner='quartile')"""
 
-st.write("VIOLINES")
-ax = sns.violinplot(x="Species", y="SepalLengthCm", data=df,size=8)
-st.plotly(ax)
+
+
+Violin = st.sidebar.radio(["VISUALIZAMOS SPECIES Y EL ANCHO DEL PETALO", "VISUALIZAMOS SPECIES Y EL LARGO DEL PETALO",
+"VISUALIZAMOS SPECIES Y EL LARGO DEL SEPALO", "VISUALIZAMOS SPECIES Y EL ANCHO DEL SEPALO"])
+
+if Violin == "VISUALIZAMOS SPECIES Y EL ANCHO DEL PETALO":
+	st.write("VISUALIZAMOS SPECIES Y EL ANCHO DEL PETALO")
+	st.pyplot(vi2)
+elif Violin == "VISUALIZAMOS SPECIES Y EL LARGO DEL PETALO":
+	st.write("VISUALIZAMOS SPECIES Y EL LARGO DEL PETALO")
+	st.pyplot(vi1)
+elif Violin == "VISUALIZAMOS SPECIES Y EL ANCHO DEL SEPALO":
+	st.write("VISUALIZAMOS SPECIES Y EL ANCHO DEL SEPALO")
+	st.pyplot(vi4)
+elif Violin == "VISUALIZAMOS SPECIES Y EL LARGO DEL SEPALO":
+	st.write("VISUALIZAMOS SPECIES Y EL LARGO DEL SEPALO")
+	st.pyplot(vi3)
