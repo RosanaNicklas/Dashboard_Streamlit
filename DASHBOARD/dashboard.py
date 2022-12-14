@@ -96,6 +96,17 @@ st.pyplot(g)
 
 fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data=["PetalWidthCm"])
 st.plotly_chart(fig)
+fir = px.scatter(df, x= "PetalWidthCm", y= "PetalLengthCm", color= "Species", size= "SepalLengthCm", hover_data=["SepalWidthCm"])
+st.plotly_chart(fir)
+
+DISPERSION =  st.sidebar.selectbox("GRÁFICOS DE DISPERSIÓN", ("GRÁFICO DE DISPERSIÓN SEPALOS", "GRÁFICO DE DISPERSIÓN PETALOS"))
+
+if DISPERSION == "GRÁFICO DE DISPERSIÓN SEPALOS":
+	st.markdown("GRÁFICO DE DISPERSIÓN SEPALOS")
+	st.plotly_chart(fig)
+elif DISPERSION == "GRÁFICO DE DISPERSIÓN PETALOS":
+	st.markdown("GRÁFICO DE DISPERSIÓN PETALOS")
+	st.plotly_chart(fir)
 
 #VIOLINES
 vi1 = plt.figure(figsize=(9,7))
