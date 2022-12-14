@@ -95,9 +95,8 @@ g = sns.pairplot(df, hue="Species", diag_kind="hist")
 st.pyplot(g)
 
 fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data=["PetalWidthCm"])
-st.plotly_chart(fig)
 fir = px.scatter(df, x= "PetalWidthCm", y= "PetalLengthCm", color= "Species", size= "SepalLengthCm", hover_data=["SepalWidthCm"])
-st.plotly_chart(fir)
+
 
 DISPERSION =  st.sidebar.selectbox("GRÁFICOS DE DISPERSIÓN", ("GRÁFICO DE DISPERSIÓN SEPALOS", "GRÁFICO DE DISPERSIÓN PETALOS"))
 
