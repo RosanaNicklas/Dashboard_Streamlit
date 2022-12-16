@@ -188,3 +188,46 @@ elif KDEPLOT  == "ESPECIES Y EL ANCHO DEL SEPALO":
 elif KDEPLOT  == "ESPECIES Y EL LARGO DEL SEPALO":
 	plt.title("ESPECIES Y EL LARGO DEL SEPALO")
 	st.pyplot(fig33)
+
+setosa = df[df["Species"] == "Iris-setosa"]
+versicolor = df[df["Species"] == "Iris-versicolor"]
+virginica = df[df["Species"] == "Iris-virginica"] 
+
+
+
+fig50 = plt.figure(figsize=(9,7))
+setosa.boxplot(column=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
+fig60 = plt.figure(figsize=(9,7))
+versicolor.boxplot(column=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
+fig70 = plt.figure(figsize=(9,7))
+virginica.boxplot(column=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
+
+BOXPLOT = st.sidebar.radio("BOXPLOT POR ESPECIES", ["IRIS-SETOSA", "IRIS-VERSICOLOR", "IRIS-VIRGINICA"])
+if BOXPLOT == "IRIS-SETOSA":
+	st.markdown("BOXPLOT DE IRIS-SETOSA")
+	st.pyplot(fig50)
+elif BOXPLOT == "IRIS-VERSICOLOR":
+	st.markdown("BOXPLOT DE IRIS-VERSICOLOR")
+	st.pyplot(fig60)
+elif BOXPLOT == "IRIS-VIRGINICA":
+	st.markdown("BOXPLOT DE IRIS-VIRGINICA")
+	st.pyplot(fig70)	
+"""
+# Para el pétalo
+fig100 = plt.figure(figsize=(9,7))
+sns.FacetGrid(df, hue="Species", height=6.4) \
+.map(plt.scatter, "PetalLengthCm", "PetalWidthCm") \
+.add_legend() \
+.set(title="Gráfica para el pétalo - con Seaborn")
+fig101 = plt.figure(figsize=(9,7))
+# para el sépalo
+sns.FacetGrid(df, hue="Species", height = 6.4) \
+.map(plt.scatter, "SepalLengthCm", "SepalWidthCm") \
+.add_legend() \
+.set(title="Gráfica para el sépalo - con Seaborn")
+
+FACETGRID = st.sidebar.radio("FACETGRID", ["FACETGRID PARA EL PÉTALO", "FACETGRID PARA EL SÉPALO"])
+if FACETGRID == "FACETGRID PARA EL PÉTALO":
+	st.pyplot(fig100)
+elif FACETGRID == "FACETGRID PARA EL SÉPALO":
+	st.pyplot(fig101)"""
