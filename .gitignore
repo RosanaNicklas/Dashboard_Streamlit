@@ -1,1 +1,3 @@
-\DATA\Clasificador_Knn.pkl
+DATA\Clasificador_Svn.pkl
+.gitignore
+PREDICTION\Iris Dataset_Prueba_Javier_López.ipynb
