@@ -228,3 +228,4 @@ if FACETGRID == "FACETGRID PARA EL PÉTALO":
 	st.pyplot(fig100)
 elif FACETGRID == "FACETGRID PARA EL SÉPALO":
 	st.pyplot(fig101)"""
+
