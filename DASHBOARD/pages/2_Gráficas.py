@@ -216,15 +216,12 @@ elif BOXPLOT == "IRIS-VIRGINICA":
 # Para el pétalo
 fig100 = plt.figure(figsize=(9,7))
 sns.FacetGrid(df, hue="Species", height=6.4) \
-.map(plt.scatter, "PetalLengthCm", "PetalWidthCm") \
-.add_legend() \
-.set(title="Gráfica para el pétalo - con Seaborn")
+.mapplt.scatter, "PetalLengthCm", "PetalWidthCm") \
+.add_legend())) 
 fig101 = plt.figure(figsize=(9,7))
 # para el sépalo
-sns.FacetGrid(df, hue="Species", height = 6.4) \
-.map(plt.scatter, "SepalLengthCm", "SepalWidthCm") \
-.add_legend() \
-.set(title="Gráfica para el sépalo - con Seaborn")
+sns.FacetGrid(df, hue="Species", height = 6.4).map(plt.scatter, "SepalLengthCm", "SepalWidthCm").add_legend())
+
 
 FACETGRID = st.sidebar.radio("FACETGRID", ["FACETGRID PARA EL PÉTALO", "FACETGRID PARA EL SÉPALO"])
 if FACETGRID == "FACETGRID PARA EL PÉTALO":
