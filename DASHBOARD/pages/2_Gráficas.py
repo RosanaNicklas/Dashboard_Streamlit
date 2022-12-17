@@ -11,7 +11,8 @@ st.write("Práctica DashBoard - Rosana Longares & Javier López")
 
 # image = Image.open('..//DATA//irisris.png')
 # st.image(image, caption='FLOR IRIS')
-df = pd.read_csv("..//DATA//2_IrisSpecies.csv")  
+df = pd.read_csv("..//DATA//2_IrisSpecies.csv")
+df=df.drop('Id', axis=1) 
 
 # st.title("Iris AGAIN!!")
 # st.title("1.ANALISIS DE LOS DATOS DEL IRIS DATASET")
@@ -81,151 +82,164 @@ df = pd.read_csv("..//DATA//2_IrisSpecies.csv")
 # 		st.image(setosa)
 # 	elif prediction == 2.0: st.image(versicolor)  
 # 	else: st.image(virginica) 
-	 
+
 st.title("2.GRÁFICOS DE LOS DATOS DEL IRIS DATASET")
 
-st.markdown("VISUALIZAMOS TODO EL IRIS DATASET")
-fig=sns.pairplot(df, hue="Species")
-st.pyplot(fig)
-	 
-st.markdown("VISUALIZAMOS SPECIES CON HISTOGRAMA")	 
-g = sns.pairplot(df, hue="Species", diag_kind="hist")
-st.pyplot(g)
+MAINcheckBOX = st.sidebar.radio("Elige Gráfico a Mostrar", ["PAIRPLOT","PAIRPLOT HISTOGRAMA", "DISPERSIÓN", "VIOLINES","HISTOGRAMA","KDEPLOT","BOXPLOT","FACETGRID"])
+if MAINcheckBOX == "PAIRPLOT":
+	st.markdown("PAIRPLOT")
+	st.markdown("VISUALIZAMOS TODO EL IRIS DATASET")
+	fig=sns.pairplot(df, hue="Species")
+	st.pyplot(fig)
+elif MAINcheckBOX == "PAIRPLOT HISTOGRAMA":
+	st.markdown("VISUALIZAMOS SPECIES CON HISTOGRAMA")	 
+	g = sns.pairplot(df, hue="Species", diag_kind="hist")
+	st.pyplot(g)
+elif MAINcheckBOX == "DISPERSIÓN":
+	st.markdown("DISPERSIÓN")
+	fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data=["PetalWidthCm"])
+	fir = px.scatter(df, x= "PetalWidthCm", y= "PetalLengthCm", color= "Species", size= "SepalLengthCm", hover_data=["SepalWidthCm"])
 
-fig = px.scatter(df, x= "SepalWidthCm", y= "SepalLengthCm", color= "Species", size= "PetalLengthCm", hover_data=["PetalWidthCm"])
-fir = px.scatter(df, x= "PetalWidthCm", y= "PetalLengthCm", color= "Species", size= "SepalLengthCm", hover_data=["SepalWidthCm"])
+	DISPERSION =  st.sidebar.selectbox("GRÁFICOS DE DISPERSIÓN", ("GRÁFICO DE DISPERSIÓN SEPALOS", "GRÁFICO DE DISPERSIÓN PETALOS"))
 
+	if DISPERSION == "GRÁFICO DE DISPERSIÓN SEPALOS":
+		st.markdown("GRÁFICO DE DISPERSIÓN SEPALOS")
+		st.plotly_chart(fig)
+	elif DISPERSION == "GRÁFICO DE DISPERSIÓN PETALOS":
+		st.markdown("GRÁFICO DE DISPERSIÓN PETALOS")
+		st.plotly_chart(fir)
 
-DISPERSION =  st.sidebar.selectbox("GRÁFICOS DE DISPERSIÓN", ("GRÁFICO DE DISPERSIÓN SEPALOS", "GRÁFICO DE DISPERSIÓN PETALOS"))
+elif MAINcheckBOX == "VIOLINES":
+	st.markdown("VIOLINES")
+		
+	#VIOLINES
+	vi1 = plt.figure(figsize=(9,7))
+	sns.violinplot(y='Species', x='PetalLengthCm', data=df, inner='quartile')
+	vi2 = plt.figure(figsize=(9,7))
+	sns.violinplot(y='Species', x='PetalWidthCm', data=df, inner='quartile')
+	vi3 = plt.figure(figsize=(9,7)) 
+	sns.violinplot(y='Species', x='SepalLengthCm', data=df, inner='quartile')
+	vi4 = plt.figure(figsize=(9,7))
+	sns.violinplot(y='Species', x='SepalWidthCm', data=df, inner='quartile')
 
-if DISPERSION == "GRÁFICO DE DISPERSIÓN SEPALOS":
-	st.markdown("GRÁFICO DE DISPERSIÓN SEPALOS")
-	st.plotly_chart(fig)
-elif DISPERSION == "GRÁFICO DE DISPERSIÓN PETALOS":
-	st.markdown("GRÁFICO DE DISPERSIÓN PETALOS")
-	st.plotly_chart(fir)
+	Violin = st.sidebar.selectbox("GRÁFICOS DE VIOLINES", ("ESPECIES Y EL ANCHO DEL PETALO", "ESPECIES Y EL LARGO DEL PETALO",
+	"ESPECIES Y EL LARGO DEL SEPALO", "ESPECIES Y EL ANCHO DEL SEPALO"))
 
-#VIOLINES
-vi1 = plt.figure(figsize=(9,7))
-sns.violinplot(y='Species', x='PetalLengthCm', data=df, inner='quartile')
-vi2 = plt.figure(figsize=(9,7))
-sns.violinplot(y='Species', x='PetalWidthCm', data=df, inner='quartile')
-vi3 = plt.figure(figsize=(9,7)) 
-sns.violinplot(y='Species', x='SepalLengthCm', data=df, inner='quartile')
-vi4 = plt.figure(figsize=(9,7))
-sns.violinplot(y='Species', x='SepalWidthCm', data=df, inner='quartile')
+	if Violin == "ESPECIES Y EL ANCHO DEL PETALO":
+		st.write("ESPECIES Y EL ANCHO DEL PETALO")
+		st.pyplot(vi2)
+	elif Violin == "ESPECIES Y EL LARGO DEL PETALO":
+		st.write("ESPECIES Y EL LARGO DEL PETALO")
+		st.pyplot(vi1)
+		
+	elif Violin == "ESPECIES Y EL ANCHO DEL SEPALO":
+		st.write("ESPECIES Y EL ANCHO DEL SEPALO")
+		st.pyplot(vi4)
+	elif Violin == "ESPECIES Y EL LARGO DEL SEPALO":
+		st.write("ESPECIES Y EL LARGO DEL SEPALO")
+		st.pyplot(vi3)
 
-
-
-Violin = st.sidebar.selectbox("GRÁFICOS DE VIOLINES", ("ESPECIES Y EL ANCHO DEL PETALO", "ESPECIES Y EL LARGO DEL PETALO",
-"ESPECIES Y EL LARGO DEL SEPALO", "ESPECIES Y EL ANCHO DEL SEPALO"))
-
-if Violin == "ESPECIES Y EL ANCHO DEL PETALO":
-	st.write("ESPECIES Y EL ANCHO DEL PETALO")
-	st.pyplot(vi2)
-elif Violin == "ESPECIES Y EL LARGO DEL PETALO":
-	st.write("ESPECIES Y EL LARGO DEL PETALO")
-	st.pyplot(vi1)
+elif MAINcheckBOX == "HISTOGRAMA":
+	st.markdown("HISTOGRAMA")
 	
-elif Violin == "ESPECIES Y EL ANCHO DEL SEPALO":
-	st.write("ESPECIES Y EL ANCHO DEL SEPALO")
-	st.pyplot(vi4)
-elif Violin == "ESPECIES Y EL LARGO DEL SEPALO":
-	st.write("ESPECIES Y EL LARGO DEL SEPALO")
-	st.pyplot(vi3)
+	fig1 = plt.figure(figsize=(9,7))
+	sns.histplot(data= df, x = 'PetalLengthCm', hue = "Species", multiple = "stack")
 
-fig1 = plt.figure(figsize=(9,7))
-sns.histplot(data= df, x = 'PetalLengthCm', hue = "Species", multiple = "stack")
+	fig2 = plt.figure(figsize=(9,7))
+	sns.histplot(data= df, x = 'PetalWidthCm', hue = "Species", multiple = "stack")
 
-fig2 = plt.figure(figsize=(9,7))
-sns.histplot(data= df, x = 'PetalWidthCm', hue = "Species", multiple = "stack")
+	fig3 = plt.figure(figsize=(9,7))
+	sns.histplot(data= df, x = 'SepalLengthCm', hue = "Species", multiple = "stack")
 
-fig3 = plt.figure(figsize=(9,7))
-sns.histplot(data= df, x = 'SepalLengthCm', hue = "Species", multiple = "stack")
+	fig4 = plt.figure(figsize=(9,7))
+	sns.histplot(data= df, x = 'SepalWidthCm', hue = "Species", multiple = "stack")
 
-fig4 = plt.figure(figsize=(9,7))
-sns.histplot(data= df, x = 'SepalWidthCm', hue = "Species", multiple = "stack")
+	HISTOGRAMA =  st.sidebar.selectbox("HISTOGRAMA", ("ESPECIES Y EL ANCHO DEL PETALO", "ESPECIES Y EL LARGO DEL PETALO",
+	"ESPECIES Y EL LARGO DEL SEPALO", "ESPECIES Y EL ANCHO DEL SEPALO"))
+	if HISTOGRAMA == "ESPECIES Y EL LARGO DEL PETALO":
+		plt.title("ESPECIES Y EL LARGO DEL PETALO")
+		st.pyplot(fig1)
+	elif HISTOGRAMA == "ESPECIES Y EL ANCHO DEL PETALO":
+		plt.title("ESPECIES Y EL ANCHO DEL PETALO")
+		st.pyplot(fig2)
+	elif HISTOGRAMA == "ESPECIES Y EL ANCHO DEL SEPALO":
+		plt.title("ESPECIES Y EL ANCHO DEL SEPALO")
+		st.pyplot(fig4)	
+	elif HISTOGRAMA == "ESPECIES Y EL LARGO DEL SEPALO":
+		plt.title("ESPECIES Y EL LARGO DEL SEPALO")
+		st.pyplot(fig3)
 
-HISTOGRAMA =  st.sidebar.selectbox("HISTOGRAMA", ("ESPECIES Y EL ANCHO DEL PETALO", "ESPECIES Y EL LARGO DEL PETALO",
-"ESPECIES Y EL LARGO DEL SEPALO", "ESPECIES Y EL ANCHO DEL SEPALO"))
-if HISTOGRAMA == "ESPECIES Y EL LARGO DEL PETALO":
-	plt.title("ESPECIES Y EL LARGO DEL PETALO")
-	st.pyplot(fig1)
-elif HISTOGRAMA == "ESPECIES Y EL ANCHO DEL PETALO":
-	plt.title("ESPECIES Y EL ANCHO DEL PETALO")
-	st.pyplot(fig2)
-elif HISTOGRAMA == "ESPECIES Y EL ANCHO DEL SEPALO":
-	plt.title("ESPECIES Y EL ANCHO DEL SEPALO")
-	st.pyplot(fig4)	
-elif HISTOGRAMA == "ESPECIES Y EL LARGO DEL SEPALO":
-	plt.title("ESPECIES Y EL LARGO DEL SEPALO")
-	st.pyplot(fig3)
+elif MAINcheckBOX == "KDEPLOT":
+	st.markdown("KDEPLOT")
+	fig11 = plt.figure(figsize=(9,7))
+	sns.kdeplot(data= df, x = 'PetalLengthCm', hue = "Species", multiple = "stack")
 
+	fig22 = plt.figure(figsize=(9,7))
+	sns.kdeplot(data= df, x = 'PetalWidthCm', hue = "Species", multiple = "stack")
 
-fig11 = plt.figure(figsize=(9,7))
-sns.kdeplot(data= df, x = 'PetalLengthCm', hue = "Species", multiple = "stack")
+	fig33 = plt.figure(figsize=(9,7))
+	sns.kdeplot(data= df, x = 'SepalLengthCm', hue = "Species", multiple = "stack")
 
-fig22 = plt.figure(figsize=(9,7))
-sns.kdeplot(data= df, x = 'PetalWidthCm', hue = "Species", multiple = "stack")
+	fig44 = plt.figure(figsize=(9,7))
+	sns.kdeplot(data= df, x = 'SepalWidthCm', hue = "Species", multiple = "stack")
 
-fig33 = plt.figure(figsize=(9,7))
-sns.kdeplot(data= df, x = 'SepalLengthCm', hue = "Species", multiple = "stack")
-
-fig44 = plt.figure(figsize=(9,7))
-sns.kdeplot(data= df, x = 'SepalWidthCm', hue = "Species", multiple = "stack")
-
-KDEPLOT =  st.sidebar.selectbox("KDEPLOT", ("ESPECIES Y EL ANCHO DEL PETALO", "ESPECIES Y EL LARGO DEL PETALO",
-"ESPECIES Y EL LARGO DEL SEPALO", "ESPECIES Y EL ANCHO DEL SEPALO"))
-if KDEPLOT  == "ESPECIES Y EL LARGO DEL PETALO":
-	plt.title("ESPECIES Y EL LARGO DEL PETALO")
-	st.pyplot(fig11)
-elif KDEPLOT  == "ESPECIES Y EL ANCHO DEL PETALO":
-	plt.title("ESPECIES Y EL ANCHO DEL PETALO")
-	st.pyplot(fig22)
-elif KDEPLOT  == "ESPECIES Y EL ANCHO DEL SEPALO":
-	plt.title("ESPECIES Y EL ANCHO DEL SEPALO")
-	st.pyplot(fig44)	
-elif KDEPLOT  == "ESPECIES Y EL LARGO DEL SEPALO":
-	plt.title("ESPECIES Y EL LARGO DEL SEPALO")
-	st.pyplot(fig33)
-
-setosa = df[df["Species"] == "Iris-setosa"]
-versicolor = df[df["Species"] == "Iris-versicolor"]
-virginica = df[df["Species"] == "Iris-virginica"] 
+	KDEPLOT =  st.sidebar.selectbox("KDEPLOT", ("ESPECIES Y EL ANCHO DEL PETALO", "ESPECIES Y EL LARGO DEL PETALO",
+	"ESPECIES Y EL LARGO DEL SEPALO", "ESPECIES Y EL ANCHO DEL SEPALO"))
+	if KDEPLOT  == "ESPECIES Y EL LARGO DEL PETALO":
+		plt.title("ESPECIES Y EL LARGO DEL PETALO")
+		st.pyplot(fig11)
+	elif KDEPLOT  == "ESPECIES Y EL ANCHO DEL PETALO":
+		plt.title("ESPECIES Y EL ANCHO DEL PETALO")
+		st.pyplot(fig22)
+	elif KDEPLOT  == "ESPECIES Y EL ANCHO DEL SEPALO":
+		plt.title("ESPECIES Y EL ANCHO DEL SEPALO")
+		st.pyplot(fig44)	
+	elif KDEPLOT  == "ESPECIES Y EL LARGO DEL SEPALO":
+		plt.title("ESPECIES Y EL LARGO DEL SEPALO")
+		st.pyplot(fig33)
+elif MAINcheckBOX == "BOXPLOT":
+	st.markdown("BOXPLOT")
+	setosa = df[df["Species"] == "Iris-setosa"]
+	versicolor = df[df["Species"] == "Iris-versicolor"]
+	virginica = df[df["Species"] == "Iris-virginica"] 
 
 
 
-fig50 = plt.figure(figsize=(9,7))
-setosa.boxplot(column=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
-fig60 = plt.figure(figsize=(9,7))
-versicolor.boxplot(column=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
-fig70 = plt.figure(figsize=(9,7))
-virginica.boxplot(column=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
+	fig50 = plt.figure(figsize=(9,7))
+	setosa.boxplot(column=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
+	fig60 = plt.figure(figsize=(9,7))
+	versicolor.boxplot(column=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
+	fig70 = plt.figure(figsize=(9,7))
+	virginica.boxplot(column=["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"])
 
-BOXPLOT = st.sidebar.radio("BOXPLOT POR ESPECIES", ["IRIS-SETOSA", "IRIS-VERSICOLOR", "IRIS-VIRGINICA"])
-if BOXPLOT == "IRIS-SETOSA":
-	st.markdown("BOXPLOT DE IRIS-SETOSA")
-	st.pyplot(fig50)
-elif BOXPLOT == "IRIS-VERSICOLOR":
-	st.markdown("BOXPLOT DE IRIS-VERSICOLOR")
-	st.pyplot(fig60)
-elif BOXPLOT == "IRIS-VIRGINICA":
-	st.markdown("BOXPLOT DE IRIS-VIRGINICA")
-	st.pyplot(fig70)	
-"""
-# Para el pétalo
-fig100 = plt.figure(figsize=(9,7))
-sns.FacetGrid(df, hue="Species", height=6.4) \
-.mapplt.scatter, "PetalLengthCm", "PetalWidthCm") \
-.add_legend())) 
-fig101 = plt.figure(figsize=(9,7))
-# para el sépalo
-sns.FacetGrid(df, hue="Species", height = 6.4).map(plt.scatter, "SepalLengthCm", "SepalWidthCm").add_legend())
+	BOXPLOT = st.sidebar.radio("BOXPLOT POR ESPECIES", ["IRIS-SETOSA", "IRIS-VERSICOLOR", "IRIS-VIRGINICA"])
+	if BOXPLOT == "IRIS-SETOSA":
+		st.markdown("BOXPLOT DE IRIS-SETOSA")
+		st.pyplot(fig50)
+	elif BOXPLOT == "IRIS-VERSICOLOR":
+		st.markdown("BOXPLOT DE IRIS-VERSICOLOR")
+		st.pyplot(fig60)
+	elif BOXPLOT == "IRIS-VIRGINICA":
+		st.markdown("BOXPLOT DE IRIS-VIRGINICA")
+		st.pyplot(fig70)	
+
+elif MAINcheckBOX == "FACETGRID":
+	st.markdown("FACETGRID")
+	# Para el pétalo
+	fig100 = plt.figure(figsize=(9,7))
+	sns.FacetGrid(df, col="Species", height=6).map(plt.scatter, "PetalLengthCm", "PetalWidthCm").add_legend()
+
+	# Para el sépalo
+	fig101 = plt.figure(figsize=(9,7))
+	sns.FacetGrid(df, col="Species", height =6).map(plt.scatter, "SepalLengthCm", "SepalWidthCm").add_legend()
 
 
-FACETGRID = st.sidebar.radio("FACETGRID", ["FACETGRID PARA EL PÉTALO", "FACETGRID PARA EL SÉPALO"])
-if FACETGRID == "FACETGRID PARA EL PÉTALO":
-	st.pyplot(fig100)
-elif FACETGRID == "FACETGRID PARA EL SÉPALO":
-	st.pyplot(fig101)"""
+	FACETGRID = st.sidebar.radio("FACETGRID", ["FACETGRID PARA EL PÉTALO", "FACETGRID PARA EL SÉPALO"])
+	if FACETGRID == "FACETGRID PARA EL PÉTALO":
+		st.pyplot(fig100)
+	elif FACETGRID == "FACETGRID PARA EL SÉPALO":
+		st.pyplot(fig101)
 
+#Ejemplo FacetGrid con iris
+# g = sns.FacetGrid(iris, col="Species")
+# g = g.map(plt.scatter, "Petal.Length", "Petal.Width")
