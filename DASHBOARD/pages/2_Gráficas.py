@@ -225,21 +225,24 @@ elif MAINcheckBOX == "BOXPLOT":
 
 elif MAINcheckBOX == "FACETGRID":
 	st.markdown("FACETGRID")
-	# Para el pétalo
-	fig100 = plt.figure(figsize=(9,7))
-	sns.FacetGrid(df, col="Species", height=6).map(plt.scatter, "PetalLengthCm", "PetalWidthCm").add_legend()
-
-	# Para el sépalo
-	fig101 = plt.figure(figsize=(9,7))
-	sns.FacetGrid(df, col="Species", height =6).map(plt.scatter, "SepalLengthCm", "SepalWidthCm").add_legend()
 
 
-	FACETGRID = st.sidebar.radio("FACETGRID", ["FACETGRID PARA EL PÉTALO", "FACETGRID PARA EL SÉPALO"])
-	if FACETGRID == "FACETGRID PARA EL PÉTALO":
-		st.pyplot(fig100)
-	elif FACETGRID == "FACETGRID PARA EL SÉPALO":
-		st.pyplot(fig101)
+	plat = sns.FacetGrid(df, hue="Species")
+	plat.map(sns.distplot, "SepalLengthCm").add_legend()
+	plet = sns.FacetGrid(df, hue="Species")
+	plet.map(sns.distplot, "SepalWidthCm").add_legend()
+	plit = sns.FacetGrid(df, hue="Species")
+	plit.map(sns.distplot, "PetalLengthCm").add_legend()
+	plut = sns.FacetGrid(df, hue="Species")
+	plut.map(sns.distplot, "PetalWidthCm").add_legend()
 
-#Ejemplo FacetGrid con iris
-# g = sns.FacetGrid(iris, col="Species")
-# g = g.map(plt.scatter, "Petal.Length", "Petal.Width")
+	FACETGRID = st.sidebar.radio("FACETGRID", ["FACETGRID PARA EL LARGO DEL SÉPALO", "FACETGRID PARA EL ANCHO DEL SÉPALO", "FACETGRID PARA EL LARGO DEL PÉTALO", "FACETGRID PARA EL ANCHO DEL PÉTALO"])
+
+	if FACETGRID == "FACETGRID PARA EL LARGO DEL SÉPALO":
+		st.pyplot(plat)
+	elif FACETGRID == "FACETGRID PARA EL ANCHO DEL SÉPALO":
+		st.pyplot(plet)
+	elif FACETGRID == "FACETGRID PARA EL LARGO DEL PÉTALO":
+		st.pyplot(plit)
+	elif FACETGRID == "FACETGRID PARA EL ANCHO DEL PÉTALO":
+		st.pyplot(plut)	
