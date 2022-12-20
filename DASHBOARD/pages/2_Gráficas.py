@@ -85,7 +85,7 @@ df=df.drop('Id', axis=1)
 
 st.title("2.GRÁFICOS DE LOS DATOS DEL IRIS DATASET")
 
-MAINcheckBOX = st.sidebar.radio("Elige Gráfico a Mostrar", ["PAIRPLOT","PAIRPLOT HISTOGRAMA", "DISPERSIÓN", "VIOLINES","HISTOGRAMA","KDEPLOT","BOXPLOT","FACETGRID"])
+MAINcheckBOX = st.sidebar.radio("Elige Gráfico a Mostrar", ["PAIRPLOT","PAIRPLOT HISTOGRAMA", "DISPERSIÓN", "VIOLINES","HISTOGRAMA","KDEPLOT","BOXPLOT","FACETGRID", "FACETGRID_DISPERSION","CLASIICACION PIE CHART", "CORRELACION PLOT"])
 if MAINcheckBOX == "PAIRPLOT":
 	st.markdown("PAIRPLOT")
 	st.markdown("VISUALIZAMOS TODO EL IRIS DATASET")
@@ -246,3 +246,66 @@ elif MAINcheckBOX == "FACETGRID":
 		st.pyplot(plit)
 	elif FACETGRID == "FACETGRID PARA EL ANCHO DEL PÉTALO":
 		st.pyplot(plut)	
+""""
+elif MAINcheckBOX == "FACETGRID_DISPERSION":
+	st.markdown("FACETGRID DISPERSION")
+	gub = sns.FacetGrid(df, hue="Species", height=6.4).map(plt.scatter, "PetalLengthCm", "PetalWidthCm").add_legend()
+    gab=sns.FacetGrid(df, hue="Species", height = 6.4).map(plt.scatter, "SepalLengthCm", "SepalWidthCm").add_legend()
+    
+    FACETGRID_DISPERSION = st.sidebar.radio("FACETGRID DISPERSION",["FACETGRID DISPERSION PARA EL PÉTALO", "FACETGRID DISPERSION PARA EL SÉPALO"])
+    
+	if FACETGRID_DISPERSION == "FACETGRID DISPERSION PARA EL SÉPALO":
+		st.pyplot(gab)
+	elif FACETGRID_DISPERSION == "FACETGRID DISPERSION PARA EL PÉTALO":
+		st.pyplot(gub)
+
+elif MAINcheckBOX == "CLASIFICACION PIE CHART":
+    st.write(df.iloc[:,-1].value_counts().plot.pie(autopct="%1.1f%%"))
+    st.pyplot()
+    st.write(df.iloc[:,-1].value_counts())	
+
+elif MAINcheckBOX == "CORRELACION PLOT":
+            st.write("### Heatmap")
+            fig, ax = plt.subplots(figsize=(10,10))
+            st.write(sns.heatmap(df.corr(), annot=True,linewidths=0.5))
+            st.pyplot() 
+
+
+elif MAINcheckBOX  == "SeriesTiempo":
+    columns = df.columns.tolist()
+    df.set_index(columns[0], inplace=True)
+    if st.checkbox("Plot Time Series Data"):
+        st.write("#### Select type of plot: ")
+        plot_type = st.selectbox("", ["area", "line", "bar"])
+        if st.button("Generate"):
+            if plot_type == "area":
+                st.area_chart(df)
+            if plot_type == "line":
+                st.line_chart(df)
+            if plot_type == "bar":
+                st.bar_chart(df)
+
+elif MAINcheckBOX == "Classification":
+    
+    st.write("#### Select column to visualize: ")
+    columns = df.columns.tolist()
+    class_name = columns[-1]
+    column_name = st.selectbox("",columns)
+    st.write("#### Select type of plot: ")
+    plot_type = st.selectbox("", ["kde","box", "violin","swarm"])
+        if st.button("Generate"):
+            if plot_type == "kde":
+                st.write(sns.FacetGrid(df, hue=class_name, palette="husl", height=6).map(sns.kdeplot, column_name).add_legend())
+                st.pyplot()
+
+            if plot_type == "box":
+                st.write(sns.boxplot(x=class_name, y=column_name, palette="husl", data=df))
+                st.pyplot()
+
+            if plot_type == "violin":
+                st.write(sns.violinplot(x=class_name, y=column_name, palette="husl", data=df))
+
+                st.pyplot()
+            if plot_type == "swarm":
+                st.write(sns.swarmplot(x=class_name, y=column_name, data=df,color="y", alpha=0.9))
+                st.pyplot()			"""	
