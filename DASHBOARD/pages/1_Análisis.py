@@ -67,41 +67,41 @@ elif option == "Análisis Datos Específicos":
 	virginicas = virginica.iloc[:,1:2]
 	virginicap = virginica.iloc[:,3:4]
 	
-	elif opciones == "PETALOSANDSEPALOS":
-		PETALOSANDSEPALOS = st.sidebar.selectbox("SELECCIONAR DATOS POR PETALOS Y SEPALOS", ("IRIS-SETOSA PETALOS", "IRIS-SETOSA SEPALOS", "IRIS-VERSICOLOR PETALOS", "IRIS-VERSICOLOR SEPALOS", "IRIS-VIRGINICA PETALOS", "IRIS-VIRGINICA PETALOS"))
-		if PETALOSANDSEPALOS  == "IRIS-SETOSA PETALOS":
-			st.table(setosap)
-		elif PETALOSANDSEPALOS  == "IRIS-SETOSA SEPALOS":
-			st.table(setosas)
-		elif PETALOSANDSEPALOS  == "IRIS-VERSICOLOR PETALOS":
-			st.table(versicolorp)
-		elif PETALOSANDSEPALOS   == "IRIS-VERSICOLOR SEPALOS":
-			st.table(versicolors)
-		elif PETALOSANDSEPALOS   == "IRIS-VIRGINICA PETALOS":
-			st.table(virginicap)
-		elif PETALOSANDSEPALOS  == "IRIS-VIRGINICA SEPALOS":
-			st.table(virginicas)
+elif option == "PETALOSANDSEPALOS":
+	PETALOSANDSEPALOS = st.sidebar.selectbox("SELECCIONAR DATOS POR PETALOS Y SEPALOS", ("IRIS-SETOSA PETALOS", "IRIS-SETOSA SEPALOS", "IRIS-VERSICOLOR PETALOS", "IRIS-VERSICOLOR SEPALOS", "IRIS-VIRGINICA PETALOS", "IRIS-VIRGINICA PETALOS"))
+	if PETALOSANDSEPALOS  == "IRIS-SETOSA PETALOS":
+		st.table(setosap)
+	elif PETALOSANDSEPALOS  == "IRIS-SETOSA SEPALOS":
+		st.table(setosas)
+	elif PETALOSANDSEPALOS  == "IRIS-VERSICOLOR PETALOS":
+		st.table(versicolorp)
+	elif PETALOSANDSEPALOS   == "IRIS-VERSICOLOR SEPALOS":
+		st.table(versicolors)
+	elif PETALOSANDSEPALOS   == "IRIS-VIRGINICA PETALOS":
+		st.table(virginicap)
+	elif PETALOSANDSEPALOS  == "IRIS-VIRGINICA SEPALOS":
+		st.table(virginicas)
 
-	elif opciones == "Dataset por filas":
+elif option == "Dataset por filas":
 	
-    	st.write("Introduce el numero de filas a ver")
-    	rows = st.number_input("", min_value=0,value=25)
-    	if rows > 0:
-        	st.dataframe(df.head(rows))
+    st.write("Introduce el numero de filas a ver")
+    rows = st.number_input("", min_value=0,value=150)
+    if rows > 0:
+        st.dataframe(df.head(rows))
 
-	elif opciones == "Dataset por columnas":
+elif option == "Dataset por columnas":
 	
-    	st.write("Introduce el numero de columnas a ver")
-    	columns = st.number_input("", min_value=0,value=25)
-    	if columns > 0:
-        	st.dataframe(df.head(columns))
+    st.write("Introduce el numero de columnas a ver")
+    columns = st.number_input("", min_value=0,value=5)
+    if columns > 0:
+        st.dataframe(df.head(columns))
 
-	elif opciones == "Seleccionando columnas":
+elif option == "Seleccionando columnas":
 	
-    	columns = df.columns.tolist()
-    	st.write("#### Selecciona las columnas a mostrar:")
-    	selected_cols = st.multiselect("", columns)
-    	if len(selected_cols) > 0:
-        	selected_df = df[selected_cols]
-        	st.dataframe(selected_df)
+    columns = df.columns.tolist()
+    st.write("#### Selecciona las columnas a mostrar:")
+    selected_cols = st.multiselect("", columns)
+    if len(selected_cols) > 0:
+        selected_df = df[selected_cols]
+        st.dataframe(selected_df)
 
