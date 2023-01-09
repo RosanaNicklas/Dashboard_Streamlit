@@ -67,7 +67,7 @@ elif option == "Análisis Datos Específicos":
 	virginicas = virginica.iloc[:,1:2]
 	virginicap = virginica.iloc[:,3:4]
 	
-elif option == "PETALOSANDSEPALOS":
+elif option == "PETALOS&SEPALOS":
 	PETALOSANDSEPALOS = st.sidebar.selectbox("SELECCIONAR DATOS POR PETALOS Y SEPALOS", ("IRIS-SETOSA PETALOS", "IRIS-SETOSA SEPALOS", "IRIS-VERSICOLOR PETALOS", "IRIS-VERSICOLOR SEPALOS", "IRIS-VIRGINICA PETALOS", "IRIS-VIRGINICA PETALOS"))
 	if PETALOSANDSEPALOS  == "IRIS-SETOSA PETALOS":
 		st.table(setosap)
@@ -82,21 +82,21 @@ elif option == "PETALOSANDSEPALOS":
 	elif PETALOSANDSEPALOS  == "IRIS-VIRGINICA SEPALOS":
 		st.table(virginicas)
 
-elif option == "Dataset por filas":
+elif option == "DATASET POR FILAS":
 	
     st.write("Introduce el numero de filas a ver")
     rows = st.number_input("", min_value=0,value=150)
     if rows > 0:
         st.dataframe(df.head(rows))
 
-elif option == "Dataset por columnas":
+elif option == "DATASET POR COLUMNAS":
 	
     st.write("Introduce el numero de columnas a ver")
     columns = st.number_input("", min_value=0,value=5)
     if columns > 0:
         st.dataframe(df.head(columns))
 
-elif option == "Seleccionando columnas":
+elif option == "SELECCIONANDO COLUMNAS":
 	
     columns = df.columns.tolist()
     st.write("#### Selecciona las columnas a mostrar:")
