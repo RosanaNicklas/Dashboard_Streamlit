@@ -49,11 +49,11 @@ if option == "Análisis Datos Globales":
 		st.text(s) 
 
 elif option == "Análisis Datos Específicos":
-	opciones = st.sidebar.radio("ELEGIR DATOS ESPECIFICOS PARA ANALIZAR",["ESPECIES", "PETALOSANDSEPALOS", "Dataset por filas", "Dataset por columnas", "Seleccionando columnas"])
+	opciones = st.sidebar.radio("ELEGIR DATOS ESPECIFICOS PARA ANALIZAR",["Especies", "Petalos&Sepalos"])
 	setosa = df[df["Species"] == "Iris-setosa"]
 	versicolor = df[df["Species"] == "Iris-versicolor"]
 	virginica = df[df["Species"] == "Iris-virginica"] 
-	if opciones == "ESPECIES":
+	if opciones == "Especies":
 		ESPECIES = st.sidebar.radio("SELECCIONAR DATOS POR ESPECIES", ["IRIS-SETOSA", "IRIS-VERSICOLOR", "IRIS-VIRGINICA"])
 		if ESPECIES == "IRIS-SETOSA":
 			st.table(setosa)
@@ -70,7 +70,7 @@ elif option == "Análisis Datos Específicos":
 	virginicas = virginica.iloc[:,1:2]
 	virginicap = virginica.iloc[:,3:4]
 	
-elif option == "PETALOS&SEPALOS":
+elif option == "Petalos&Sepalos":
 	PETALOSANDSEPALOS = st.sidebar.selectbox("SELECCIONAR DATOS POR PETALOS Y SEPALOS", ("IRIS-SETOSA PETALOS", "IRIS-SETOSA SEPALOS", "IRIS-VERSICOLOR PETALOS", "IRIS-VERSICOLOR SEPALOS", "IRIS-VIRGINICA PETALOS", "IRIS-VIRGINICA PETALOS"))
 	if PETALOSANDSEPALOS  == "IRIS-SETOSA PETALOS":
 		st.table(setosap)
@@ -85,21 +85,21 @@ elif option == "PETALOS&SEPALOS":
 	elif PETALOSANDSEPALOS  == "IRIS-VIRGINICA SEPALOS":
 		st.table(virginicas)
 
-elif option == "DATASET POR FILAS":
+elif option == "Dataset por filas":
 	
     st.write("Introduce el numero de filas a ver")
     rows = st.number_input("", min_value=0,value=150)
     if rows > 0:
         st.dataframe(df.head(rows))
 
-elif option == "DATASET POR COLUMNAS":
+elif option == "Dataset por columnas":
 	
     st.write("Introduce el numero de columnas a ver")
     columns = st.number_input("", min_value=0,value=5)
     if columns > 0:
         st.dataframe(df.head(columns))
 
-elif option == "SELECCIONANDO COLUMNAS":
+elif option == "Seleccionando columnas":
 	
     columns = df.columns.tolist()
     st.write("#### Selecciona las columnas a mostrar:")
