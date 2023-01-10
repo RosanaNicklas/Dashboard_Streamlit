@@ -2,11 +2,13 @@ import joblib
 from PIL import Image
 import streamlit as st
 import pandas as pd
-
+from PIL import Image
 st.write("Práctica DashBoard - Rosana Longares & Javier López")
 
 st.title("4.PREDICCIÓN")
 
+image = Image.open('..//DATA//iris5.png')
+st.image(image, caption='FLOR IRIS')
 
 #Loading Our final trained Knn model 
 model= open("..//DATA//Clasificador_Svc.pkl", "rb")

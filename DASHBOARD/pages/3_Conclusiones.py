@@ -1,7 +1,7 @@
 # Para ejecutar usaremos streamlit run <nombre del script> :streamlit run dashboard.py
 
 import streamlit as st
-
+from PIL import Image
 st.write("Práctica DashBoard - Rosana Longares & Javier López")
 
 st.title("3.CONCLUSIONES")
@@ -25,6 +25,8 @@ st.markdown(
     """
 )
 
+image = Image.open('..//DATA//iris3.png')
+st.image(image, caption='FLOR IRIS')
 st.markdown(
     """
     # CONCLUSIONES

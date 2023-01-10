@@ -6,8 +6,11 @@ import matplotlib.pyplot as plt
 import io
 #import plotly.express as px
 import seaborn as sns
+from PIL import Image
 
 st.write("Práctica DashBoard - Rosana Longares & Javier López")
+image = Image.open('..//DATA//iris4.png')
+st.image(image, caption='FLOR IRIS')
 
 df = pd.read_csv("..//DATA//2_IrisSpecies.csv")  
 df=df.drop('Id', axis=1) 
