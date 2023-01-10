@@ -6,6 +6,7 @@ import plotly.express as px
 import seaborn as sns
 import streamlit as st
 #from PIL import Image
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.write("Práctica DashBoard - Rosana Longares & Javier López")
 
@@ -85,7 +86,7 @@ df=df.drop('Id', axis=1)
 
 st.title("2.GRÁFICOS DE LOS DATOS DEL IRIS DATASET")
 
-MAINcheckBOX = st.sidebar.radio("Elige Gráfico a Mostrar", ["PAIRPLOT","PAIRPLOT HISTOGRAMA", "DISPERSIÓN", "VIOLINES","HISTOGRAMA","KDEPLOT","BOXPLOT","FACETGRID", "FACETGRID_DISPERSION","CLASIFICACION PIE CHART", "CORRELACION PLOT", "SERIES_TIEMPO", "CLASIFICACION SENCILLA"])
+MAINcheckBOX = st.sidebar.radio("Elige Gráfico a Mostrar", ["PAIRPLOT","PAIRPLOT HISTOGRAMA", "DISPERSIÓN", "VIOLINES","HISTOGRAMA","KDEPLOT","BOXPLOT","FACETGRID", "FACETGRID_DISPERSION","CLASIFICACION PIE CHART", "CORRELACION PLOT", "CLASIFICACION SENCILLA"])
 if MAINcheckBOX == "PAIRPLOT":
 	st.markdown("PAIRPLOT")
 	st.markdown("VISUALIZAMOS TODO EL IRIS DATASET")
@@ -272,21 +273,6 @@ elif MAINcheckBOX == "CORRELACION PLOT":
 	st.write(sns.heatmap(df.corr(), annot=True,linewidths=0.5))
 	st.pyplot() 
 
-
-elif MAINcheckBOX  == "SERIES_TIEMPO":
-	st.markdown("SeriesTiempo")
-	columns = df.columns.tolist()
-	df.set_index(columns[0], inplace=True)
-	if st.checkbox("Plot Time Series Data"):
-		st.write("#### Select type of plot: ")
-		plot_type = st.selectbox("", ["area", "line", "bar"])
-		if st.button("Generate"):
-			if plot_type == "area":
-				st.area_chart(df)
-			if plot_type == "line":
-				st.line_chart(df)
-			if plot_type == "bar":
-				st.bar_chart(df)
 
 elif MAINcheckBOX == "CLASIFICACION SENCILLA":
 	st.markdown("Classification")

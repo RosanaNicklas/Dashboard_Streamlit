@@ -71,7 +71,7 @@ elif option == "Análisis Datos Específicos":
 
 		
 	elif opciones == "Petalos&Sepalos":
-		print("Estamos en Petalos....######")
+		
 		PETALOSANDSEPALOS = st.sidebar.selectbox("SELECCIONAR DATOS POR PETALOS Y SEPALOS", ("IRIS-SETOSA PETALOS", "IRIS-SETOSA SEPALOS", "IRIS-VERSICOLOR PETALOS", "IRIS-VERSICOLOR SEPALOS", "IRIS-VIRGINICA PETALOS", "IRIS-VIRGINICA PETALOS"))
 		if PETALOSANDSEPALOS  == "IRIS-SETOSA PETALOS":
 			st.table(setosap)
