@@ -9,7 +9,6 @@ st.title("4.PREDICCIÓN")
 
 image = Image.open('..//DATA//iris5.png')
 st.image(image, caption='FLOR IRIS')
-
 #Loading Our final trained Knn model 
 model= open("..//DATA//Clasificador_Svc.pkl", "rb")
 Svc_clf=joblib.load(model)
