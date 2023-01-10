@@ -289,24 +289,24 @@ elif MAINcheckBOX  == "SERIES_TIEMPO":
 				st.bar_chart(df)
 
 elif MAINcheckBOX == "CLASIFICACION SENCILLA":
-    st.markdown("Classification")
-    st.write("#### Select column to visualize: ")
-    columns = df.columns.tolist()
-    class_name = columns[-1]
-    column_name = st.selectbox("",columns)
-    st.write("#### Select type of plot: ")
-    plot_type = st.selectbox("Select info", ["kde", "box", "violin", "swarm"])
-    generate = st.button("Generate")
-    #if generate:
-     #   if plot_type == "kde":
-    #		st.write(sns.FacetGrid(df, hue=class_name, palette="husl", height=6).map(sns.kdeplot, column_name).add_legend())
-	#		st.pyplot()
-	#	if plot_type == "box":
-	#		st.write(sns.boxplot(x=class_name, y=column_name, palette="husl", data=df))
-	#		st.pyplot()
-	#	if plot_type == "violin":
-	#		st.write(sns.violinplot(x=class_name, y=column_name, palette="husl", data=df))
-	#		st.pyplot()
-	#	if plot_type == "swarm":
-	#		st.write(sns.swarmplot(x=class_name, y=column_name, data=df,color="y", alpha=0.9))
-	#		st.pyplot()
+	st.markdown("Classification")
+	st.write("#### Select column to visualize: ")
+	columns = df.columns.tolist()
+	class_name = columns[-1]
+	column_name = st.selectbox("",columns)
+	st.write("#### Select type of plot: ")
+	plot_type = st.selectbox("Select info", ["kde", "box", "violin", "swarm"])
+	generate = st.button("Generate")
+	if generate:
+		if plot_type == "kde":
+			st.write(sns.FacetGrid(df, hue=class_name, palette="husl", height=6).map(sns.kdeplot, column_name).add_legend())
+			st.pyplot()
+		if plot_type == "box":
+			st.write(sns.boxplot(x=class_name, y=column_name, palette="husl", data=df))
+			st.pyplot()
+		if plot_type == "violin":
+			st.write(sns.violinplot(x=class_name, y=column_name, palette="husl", data=df))
+			st.pyplot()
+		if plot_type == "swarm":
+			st.write(sns.swarmplot(x=class_name, y=column_name, data=df,color="y", alpha=0.9))
+			st.pyplot()

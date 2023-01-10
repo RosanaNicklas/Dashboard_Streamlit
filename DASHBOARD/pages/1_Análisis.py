@@ -53,6 +53,13 @@ elif option == "Análisis Datos Específicos":
 	setosa = df[df["Species"] == "Iris-setosa"]
 	versicolor = df[df["Species"] == "Iris-versicolor"]
 	virginica = df[df["Species"] == "Iris-virginica"] 
+
+	setosap = setosa.iloc[:,3:4]
+	setosas = setosa.iloc[:,1:2]
+	versicolorp = versicolor.iloc[:,3:4]
+	versicolors = versicolor.iloc[:,1:2]
+	virginicas = virginica.iloc[:,1:2]
+	virginicap = virginica.iloc[:,3:4]
 	if opciones == "Especies":
 		ESPECIES = st.sidebar.radio("SELECCIONAR DATOS POR ESPECIES", ["IRIS-SETOSA", "IRIS-VERSICOLOR", "IRIS-VIRGINICA"])
 		if ESPECIES == "IRIS-SETOSA":
@@ -62,28 +69,22 @@ elif option == "Análisis Datos Específicos":
 		elif ESPECIES == "IRIS-VIRGINICA":
 			st.table(virginica)	
 
-
-	setosap = setosa.iloc[:,3:4]
-	setosas = setosa.iloc[:,1:2]
-	versicolorp = versicolor.iloc[:,3:4]
-	versicolors = versicolor.iloc[:,1:2]
-	virginicas = virginica.iloc[:,1:2]
-	virginicap = virginica.iloc[:,3:4]
-	
-elif option == "Petalos&Sepalos":
-	PETALOSANDSEPALOS = st.sidebar.selectbox("SELECCIONAR DATOS POR PETALOS Y SEPALOS", ("IRIS-SETOSA PETALOS", "IRIS-SETOSA SEPALOS", "IRIS-VERSICOLOR PETALOS", "IRIS-VERSICOLOR SEPALOS", "IRIS-VIRGINICA PETALOS", "IRIS-VIRGINICA PETALOS"))
-	if PETALOSANDSEPALOS  == "IRIS-SETOSA PETALOS":
-		st.table(setosap)
-	elif PETALOSANDSEPALOS  == "IRIS-SETOSA SEPALOS":
-		st.table(setosas)
-	elif PETALOSANDSEPALOS  == "IRIS-VERSICOLOR PETALOS":
-		st.table(versicolorp)
-	elif PETALOSANDSEPALOS   == "IRIS-VERSICOLOR SEPALOS":
-		st.table(versicolors)
-	elif PETALOSANDSEPALOS   == "IRIS-VIRGINICA PETALOS":
-		st.table(virginicap)
-	elif PETALOSANDSEPALOS  == "IRIS-VIRGINICA SEPALOS":
-		st.table(virginicas)
+		
+	elif opciones == "Petalos&Sepalos":
+		print("Estamos en Petalos....######")
+		PETALOSANDSEPALOS = st.sidebar.selectbox("SELECCIONAR DATOS POR PETALOS Y SEPALOS", ("IRIS-SETOSA PETALOS", "IRIS-SETOSA SEPALOS", "IRIS-VERSICOLOR PETALOS", "IRIS-VERSICOLOR SEPALOS", "IRIS-VIRGINICA PETALOS", "IRIS-VIRGINICA PETALOS"))
+		if PETALOSANDSEPALOS  == "IRIS-SETOSA PETALOS":
+			st.table(setosap)
+		elif PETALOSANDSEPALOS  == "IRIS-SETOSA SEPALOS":
+			st.table(setosas)
+		elif PETALOSANDSEPALOS  == "IRIS-VERSICOLOR PETALOS":
+			st.table(versicolorp)
+		elif PETALOSANDSEPALOS   == "IRIS-VERSICOLOR SEPALOS":
+			st.table(versicolors)
+		elif PETALOSANDSEPALOS   == "IRIS-VIRGINICA PETALOS":
+			st.table(virginicap)
+		elif PETALOSANDSEPALOS  == "IRIS-VIRGINICA SEPALOS":
+			st.table(virginicas)
 
 elif option == "Dataset por filas":
 	
