@@ -17,7 +17,7 @@ df=df.drop('Id', axis=1)
 
 st.title("1.ANALISIS DE LOS DATOS DEL IRIS DATASET")
 
-option = st.selectbox("ANALIZANDO LOS DATOS", ["Selecciona una opción...","Análisis Datos Globales","Análisis Datos Específicos", "Dataset por filas", "Dataset por columnas", "Seleccionando columnas"])
+option = st.selectbox("ANALIZANDO LOS DATOS", ["Selecciona una opción...","Análisis Datos Globales","Análisis Datos Específicos"])
 
 if option == "Análisis Datos Globales":
 	fig45 = plt.figure(figsize=(9,7))
@@ -49,7 +49,7 @@ if option == "Análisis Datos Globales":
 		st.text(s) 
 
 elif option == "Análisis Datos Específicos":
-	opciones = st.sidebar.radio("ELEGIR DATOS ESPECIFICOS PARA ANALIZAR",["Especies", "Petalos&Sepalos"])
+	opciones = st.sidebar.radio("ELEGIR DATOS ESPECIFICOS PARA ANALIZAR",["Especies", "Petalos&Sepalos", "Dataset por filas", "Dataset por columnas", "Seleccionando columnas"])
 	setosa = df[df["Species"] == "Iris-setosa"]
 	versicolor = df[df["Species"] == "Iris-versicolor"]
 	virginica = df[df["Species"] == "Iris-virginica"] 
@@ -86,26 +86,23 @@ elif option == "Análisis Datos Específicos":
 		elif PETALOSANDSEPALOS  == "IRIS-VIRGINICA SEPALOS":
 			st.table(virginicas)
 
-elif option == "Dataset por filas":
-	
-    st.write("Introduce el numero de filas a ver")
-    rows = st.number_input("", min_value=0,value=150)
-    if rows > 0:
-        st.dataframe(df.head(rows))
+	elif opciones == "Dataset por filas":
+		st.write("Introduce el numero de filas a ver")
+		rows = st.number_input("", min_value=0,value=150)
+		if rows > 0:
+			st.dataframe(df.head(rows))
 
-elif option == "Dataset por columnas":
-	
-    st.write("Introduce el numero de columnas a ver")
-    columns = st.number_input("", min_value=0,value=5)
-    if columns > 0:
-        st.dataframe(df.head(columns))
+	elif opciones == "Dataset por columnas":
+		st.write("Introduce el numero de columnas a ver")
+		columns = st.number_input("", min_value=0,value=5)
+		if columns > 0:
+			st.dataframe(df.head(columns))
 
-elif option == "Seleccionando columnas":
-	
-    columns = df.columns.tolist()
-    st.write("#### Selecciona las columnas a mostrar:")
-    selected_cols = st.multiselect("", columns)
-    if len(selected_cols) > 0:
-        selected_df = df[selected_cols]
-        st.dataframe(selected_df)
+	elif opciones == "Seleccionando columnas":
+		columns = df.columns.tolist()
+		st.write("#### Selecciona las columnas a mostrar:")
+		selected_cols = st.multiselect("", columns)
+		if len(selected_cols) > 0:
+			selected_df = df[selected_cols]
+			st.dataframe(selected_df)
 
