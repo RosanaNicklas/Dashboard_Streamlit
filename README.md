@@ -64,3 +64,9 @@ La predicción se realiza con el algoritmo Support Vector Classifier, al lado de
 
 ## Documentación
 https://docs.streamlit.io/en/estable/
+
+
+
+Javier Lopez Baeza
+
+Rosana Longares Herrero
