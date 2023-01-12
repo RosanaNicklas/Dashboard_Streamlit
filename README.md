@@ -40,8 +40,6 @@ En la parte de Análisis de datos, se han creado dos pestañas para poder selecc
 En cuanto a las gráficas hay unas pestañas a la izquierda donde elegir el tipo de gráfico con el que se quieren visualizar los datos.
 ![Gráfico1](https://user-images.githubusercontent.com/98030137/212059106-c5ccf1db-9df7-4ee2-a2ac-83fb77a20a0e.png)
 
-![Grafico 1]('..//DATA//Gráfico1.png')
-
 En alguno de los graficos se pueden seleccionar  la clases o los atributos del dataset especificos que quieren verse.
 
 ![Gráfico3](https://user-images.githubusercontent.com/98030137/212059146-e2e43a8e-8229-4e72-bb3b-e97e2a301a57.png)
