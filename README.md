@@ -1,8 +1,9 @@
 # Dashboard_Streamlit 
 
-Esta es una aplicación web para proyectos de ciencia de datos donde hemos usado la biblioteca Streamlit para hacerla. Los datos utilizados son el famoso conjunto de datos incorporado de la flor de iris.
+Esta es una aplicación web para proyectos de ciencia de datos donde hemos usado Python 3.8, hemos sado las librerias de Pandas, Numpy para analizar lod datos, la librerias seaborn, plotly y matplotlib para los graficos, y por último hemos utilizado los frameworks de Scikit-learn para la clasificación del tipo de flor y de streamlit para poder hacer la aplicación.
 
- En esta variación en los parámetros como la longitud del pétalo, el ancho del pétalo, la longitud del sépalo, el ancho del sépalo nos ayuda a saber si se trata de una setosa, versicolor, virginica mediante el uso de SVC, o Support Vector Classifier para la predicción.
+
+Los datos utilizados son el famoso conjunto de datos incorporado de la flor de iris.En esta variación en los parámetros como la longitud del pétalo, el ancho del pétalo, la longitud del sépalo, el ancho del sépalo nos ayuda a saber si se trata de una setosa, versicolor, virginica mediante el uso de SVC, o Support Vector Classifier para la predicción.
 ## Para mostrar el tablero
 
 pip3 install streamlit
