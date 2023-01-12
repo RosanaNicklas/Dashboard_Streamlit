@@ -11,7 +11,7 @@ streamlit run dashboard.py
 
 Copiar y pegar la dirección que se muestra en su navegador web para cargar.
 
-![image]('..//DATA//dashboard.png')
+![image]('//Usuarios//javier//Escritorio//Dashboard_Streamlit//Data//dashboard.png')
 
 La aplicación esta dividida en 4 páginas:
 
@@ -36,7 +36,7 @@ En la parte de Análisis de datos, se han creado dos pestañas para poder selecc
 ## Gráficos de los datos
 En cuanto a las gráficas hay unas pestañas a la izquierda donde elegir el tipo de gráfico con el que se quieren visualizar los datos.
 
-![image]('..//DATA//Gráfico1.png')
+![Grafico 1]('..//DATA//Gráfico1.png')
 
 En alguno de los graficos se pueden seleccionar  la clases o los atributos del dataset especificos que quieren verse.
 
