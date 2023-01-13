@@ -1,0 +1,8 @@
+Release Version 1.0.0    13/01/2023    rosana8longares@gmail.com
+                                       javier.lopez.baeza@gmail.com
+
+    - Nuevas funcionalidades:
+        * Añadida la parte de Análisis de datos específicos y los graficos sencillos.
+
+    - Bug fixes:
+        *
