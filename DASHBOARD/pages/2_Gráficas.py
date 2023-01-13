@@ -1,88 +1,29 @@
 # Para ejecutar usaremos streamlit run <nombre del script> :streamlit run dashboard.py
+import CRUD as crud
+import datasettings
 import matplotlib.pyplot as plt
 import pandas as pd
 #import plotly.figure_factory as ff
 import plotly.express as px
 import seaborn as sns
 import streamlit as st
+
 #from PIL import Image
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.write("Práctica DashBoard - Rosana Longares & Javier López")
 
-# image = Image.open('..//DATA//irisris.png')
-# st.image(image, caption='FLOR IRIS')
-df = pd.read_csv("..//DATA//2_IrisSpecies.csv")
-df=df.drop('Id', axis=1) 
 
-# st.title("Iris AGAIN!!")
-# st.title("1.ANALISIS DE LOS DATOS DEL IRIS DATASET")
+if datasettings.ENTORNOLOCAL:#datasettings.ENTORNO==datasettings.ENTORNOJAVI or datasettings.ENTORNOROSANA:
+	#st.info(datasettings.ENTORNOLOCAL)
+	st.info("Datos Cargados de BBDD...")
+	df=crud.show_All_Tabla(datasettings.IRISTABLE)
+else:
+	st.info("Datos Cargandos de CSV...")
+	df = pd.read_csv("..//DATA//2_IrisSpecies.csv")  
 
-# opciones = st.sidebar.radio("ANALIZANDO LOS DATOS",	["IRIS DATASET","DATOS ESTADISTICOS", "TABLA DEL IRIS DATASET","TAMAÑO DEL IRIS DATASET", 
-# "TIPOS DE ESPECIES Y CANTIDAD"])
+df=df.drop(datasettings.IRISCOL1, axis=1) 
 
-# if opciones == "IRIS DATASET":
-# 	st.write("*********** IRIS DATASET ***********")
-# 	st.dataframe(df)
-# elif opciones == "TAMAÑO DEL IRIS DATASET":
-# 	st.write("El tamaño del Dataset es:", df.shape, df.Species== "Iris-setosa")
-# elif opciones == "TABLA DEL IRIS DATASET":
-# 	st.write("Tabla del Iris Dataset")
-# 	st.table(df)
-# elif opciones == "TIPOS DE ESPECIES Y CANTIDAD":
-# 	st.write("Tipos de Especies y Cantidad", df["Species"].value_counts())
-# elif opciones == "DATOS ESTADISTICOS":
-# 	st.write("************* Datos Estadisticos ***************", df.describe())
-
-
-# st.write("Podemos plotear un gráfico de barras")
-# st.bar_chart(df.SepalLengthCm)
-#st.pyplot(df.SepalLengthCm, df.Species, color = "red")
-
-# st.title("2.PREDICCIÓN")
-
-
-# import joblib
-# from PIL import Image
-
-# #Loading Our final trained Knn model 
-# model= open("..//DATA//Clasificador_Svc.pkl", "rb")
-# Svc_clf=joblib.load(model)
-
-
-# st.title("Iris flower species Classification App")
-
-# #Loading images
-
-# setosa= Image.open('..//DATA//setosa.png')
-# versicolor= Image.open('..//DATA//versicolor.png')
-# virginica = Image.open('..//DATA//virginica.png')
-
-# st.sidebar.title("Features")
-
-# #Intializing
-# parameter_list=['Sepal length (cm)','Sepal Width (cm)','Petal length (cm)','Petal Width (cm)']
-# parameter_input_values=[]
-# parameter_default_values=['5.2','3.2','4.2','1.2']
-
-# values=[]
-
-# #Display
-# for parameter, parameter_df in zip(parameter_list, parameter_default_values):
-	
-# 	values= st.sidebar.slider(label=parameter, key=parameter,value=float(parameter_df), min_value=0.0, max_value=8.0, step=0.1)
-# 	#st.write(values)
-# 	parameter_input_values.append(values)
-	
-# input_variables=pd.DataFrame([parameter_input_values],columns=parameter_list,dtype=float)
-# st.write('\n\n')
-
-# if st.button("Click Here to Classify"):
-# 	prediction = Svc_clf.predict(input_variables)
-# 	if prediction == 1.0:
-# 		st.image(setosa)
-# 	elif prediction == 2.0: st.image(versicolor)  
-# 	else: st.image(virginica) 
 
 st.title("2.GRÁFICOS DE LOS DATOS DEL IRIS DATASET")
 

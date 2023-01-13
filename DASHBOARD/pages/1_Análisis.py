@@ -1,19 +1,29 @@
 # Para ejecutar usaremos streamlit run <nombre del script> :streamlit run dashboard.py
-
-import pandas as pd
-import streamlit as st
-import matplotlib.pyplot as plt
 import io
+
+import CRUD as crud
+import datasettings
+import matplotlib.pyplot as plt
+import pandas as pd
 #import plotly.express as px
 import seaborn as sns
+import streamlit as st
 from PIL import Image
 
 st.write("Práctica DashBoard - Rosana Longares & Javier López")
 image = Image.open('..//DATA//iris4.png')
 st.image(image, caption='FLOR IRIS')
 
-df = pd.read_csv("..//DATA//2_IrisSpecies.csv")  
-df=df.drop('Id', axis=1) 
+
+if datasettings.ENTORNOLOCAL:#datasettings.ENTORNO==datasettings.ENTORNOJAVI or datasettings.ENTORNOROSANA:
+	#st.info(datasettings.ENTORNOLOCAL)
+	st.info("Datos Cargados de BBDD...")
+	df=crud.show_All_Tabla(datasettings.IRISTABLE)
+else:
+	st.info("Datos Cargandos de CSV...")
+	df = pd.read_csv("..//DATA//2_IrisSpecies.csv")  
+
+df=df.drop(datasettings.IRISCOL1, axis=1) 
 
 st.title("1.ANALISIS DE LOS DATOS DEL IRIS DATASET")
 
