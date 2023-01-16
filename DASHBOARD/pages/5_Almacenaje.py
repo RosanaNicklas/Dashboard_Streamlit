@@ -116,7 +116,14 @@ with st.expander("PREDICTIONS OPTIONS..."):
         else: c11.warning(f"{datasettings.RESULTSTABLE} Table doesn't exist!!!...")
 
 
+hc.hydralit_experimental(True)
 
+st.markdown(datasettings.INICODE,unsafe_allow_html=True)
+query_param = st.experimental_get_query_params()
+
+if query_param:
+    st.write('We caputred these values from the experimental modal form using Javascript + HTML + Streamlit + Hydralit Components.')
+    st.write(query_param)
 
 
 

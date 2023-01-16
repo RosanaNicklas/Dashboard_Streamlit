@@ -1,8 +1,9 @@
 DATA/Clasificador_Svc.pkl
 .gitignore
-PREDICTION/Iris_Dataset_Prueba_Javier_López.ipynb
+PREDICTION/Iris_Dataset_Prueba_Javier_Lopez.ipynb
+DATABASE/PostgreSQL/settings.py
 DASHBOARD/__pycache__
-DASHBOARD/settings.py
-DASHBOARD/datasettings.py
+#DASHBOARD/settings.py
+#DASHBOARD/datasettings.py
 DASHBOARD/pages/6_prueba.py
 DATABASE
